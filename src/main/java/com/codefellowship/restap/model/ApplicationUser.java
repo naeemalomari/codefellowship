@@ -9,10 +9,6 @@ import java.util.Collection;
 
 @Entity
 public class ApplicationUser implements UserDetails {
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,12 +19,9 @@ public class ApplicationUser implements UserDetails {
     private String dateOfBirth;
     private String bio;
 
-
     @Column(unique = true)
     private String username;
-
-
-
+    
     public ApplicationUser() {
     }
 
@@ -42,7 +35,7 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-    public ApplicationUser(String password, String username) {
+    public ApplicationUser(String username,String password) {
         this.password = password;
         this.username = username;
     }

@@ -48,17 +48,12 @@ public class HomeController {
         return "profile";
     }
 
-
     @PostMapping("/signup")
     public RedirectView attemptSignUp(@RequestParam String username, @RequestParam String password) {
         ApplicationUser applicationUser = new ApplicationUser(username, passwordEncoder.encode(password));
         applicationUser = applicationUserRepository.save(applicationUser);
-
         Authentication authentication = new UsernamePasswordAuthenticationToken(applicationUser, null, new ArrayList<>());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         return new RedirectView("/");
     }
-
-
 }
