@@ -12,8 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
@@ -45,14 +45,15 @@ public class HomeController {
     public String getProfilePage(Model model) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userDetails", userDetails);
+//        applicationUserRepository.findApplicationUserByUsername(userDetails, userDetails.getUsername());
         return "profile";
     }
 
     @PostMapping("/signup")
-    public RedirectView attemptSignUp(@RequestParam String username, @RequestParam String password) {
-        ApplicationUser applicationUser = new ApplicationUser(username, passwordEncoder.encode(password));
-        applicationUser = applicationUserRepository.save(applicationUser);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(applicationUser, null, new ArrayList<>());
+    public RedirectView attemptSignUp(@ModelAttribute ApplicationUser user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user=applicationUserRepository.save(user);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }

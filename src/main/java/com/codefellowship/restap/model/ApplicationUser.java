@@ -21,7 +21,7 @@ public class ApplicationUser implements UserDetails {
 
     @Column(unique = true)
     private String username;
-    
+
     public ApplicationUser() {
     }
 
