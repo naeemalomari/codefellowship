@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up Page</title>
+</head>
+<body>
+<form method="POST" th:action="@{/signup}">
+  <div><label for="username">Username : <input id="username" name="username" type="text"></label></div>
+  <div><label for="password">Password : <input id="password" name="password" type="text"></label></div>
+  <div><label for="firstname">firstname : <input id="firstname" name="firstname" type="text"></label></div>
+  <div><label for="lastname">lastname : <input id="lastname" name="lastname" type="text"></label></div>
+  <div><label for="dateOfBirth">dateOfBirth : <input id="dateOfBirth" name="dateOfBirth" type="date"></label></div>
+  <div><label for="bio">bio : <input id="bio" name="bio" type="text"></label></div>
+  <div><input type="submit" value="Submit"/></div>
+</form>
+</body>
+</html>
