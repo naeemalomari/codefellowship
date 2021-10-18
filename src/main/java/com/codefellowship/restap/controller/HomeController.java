@@ -38,16 +38,8 @@ public class HomeController {
     PostRepository postRepository;
 
 
-    @GetMapping
-    public String getHomePage() {
-
-        return "/";
-    }
-
-
     @GetMapping("/signup")
     public String getSignUpPage() {
-
         return "signup";
     }
 
@@ -60,7 +52,6 @@ public class HomeController {
 
     @GetMapping("/login")
     public String getLoginPage() {
-
         return "login";
     }
 
@@ -69,7 +60,7 @@ public class HomeController {
         ApplicationUser user = applicationUserRepository.findApplicationUserByUsername(username);
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new RedirectView("/");
+        return new RedirectView("/homepage2");
     }
 
     @GetMapping("/profile")
@@ -80,7 +71,6 @@ public class HomeController {
 
         return "profile";
     }
-
 
     @GetMapping("/posts")
     public String getPosts(@ModelAttribute Posts posts, Model model){
@@ -103,8 +93,6 @@ public class HomeController {
 
         return new RedirectView("/profile") ;
     }
-
-
 
     @GetMapping("/")
     public String goHome(){
