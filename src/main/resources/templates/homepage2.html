@@ -2,16 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-  <title>Home Page</title>
+  <title>HOME PAGE </title>
 </head>
 <body>
-<h1>Welcome Class to Spring Security</h1>
+<h2>Welcome Class to Spring Security </h2>
+<h1> HOMEPAGE </h1>
 <div sec:authorize="isAuthenticated()">
-
 </div>
 <p>Click <a th:href="@{/profile}">here</a> profile.</p>
 <!--<p>Click <a th:href="@{/login}">here</a> login.</p>-->
 <p>Click <a th:href="@{/signup}">here</a> signup.</p>
-
 </body>
 </html>
