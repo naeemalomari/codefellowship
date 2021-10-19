@@ -90,6 +90,15 @@ public class HomeController {
 
         return new RedirectView("/profile") ;
     }
+    @GetMapping("/profile/{id}")
+    public String getProfilePageById(@PathVariable String id , Model model) {
+        long Id= Long.parseLong(id);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApplicationUser user = applicationUserRepository.findApplicationUserById(Id);
+        model.addAttribute("user", user);
+
+        return "userId";
+    }
 
     @GetMapping("/")
     public String goHome(){
