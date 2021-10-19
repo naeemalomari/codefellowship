@@ -35,12 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/signup").permitAll()
-                .antMatchers("/profile").fullyAuthenticated()
-                .anyRequest().permitAll()
+//                .antMatchers("/profile").permitAll()
+                .antMatchers("/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").defaultSuccessUrl("/")
+                .loginPage("/login").defaultSuccessUrl("/profile",true)
                 .and()
-                .logout().permitAll().logoutSuccessUrl("/");
+                .logout().logoutSuccessUrl("/");
     }
 }
