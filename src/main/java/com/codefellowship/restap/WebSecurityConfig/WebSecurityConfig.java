@@ -11,8 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
-@EnableWebSecurity
+@Configuration @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -36,12 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/signup").permitAll()
+                .antMatchers("/profile").fullyAuthenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .loginPage("/login").defaultSuccessUrl("/")
                 .and()
-                .logout().permitAll();
+                .logout().permitAll().logoutSuccessUrl("/");
     }
 }
