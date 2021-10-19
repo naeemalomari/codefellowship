@@ -77,7 +77,6 @@ public class HomeController {
 
         return "posts";
     }
-
     @PostMapping("/posts")
     public RedirectView addPosts(@ModelAttribute Posts posts) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -99,7 +98,6 @@ public class HomeController {
 
         return "userId";
     }
-
     @GetMapping("/")
     public String goHome(){
         return "homepage2";
