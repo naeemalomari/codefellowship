@@ -99,7 +99,6 @@ public class HomeController {
 
         return "userId";
     }
-
     @GetMapping("/")
     public String goHome(){
         return "homepage2";
