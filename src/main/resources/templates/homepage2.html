@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html
+        xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+
+        lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.thymeleaf.org/extras/spring-security ">
+
 <head>
-  <title>HOME PAGE </title>
+    <title>HOME PAGE </title>
 </head>
 <body>
 <h2>Welcome Class to Spring Security </h2>
 <h1> HOMEPAGE </h1>
 <div sec:authorize="isAuthenticated()">
+    <p>Click
+        <a th:href="@{/profile}">here</a>
+        profile.
+    </p>
+
 </div>
 <!--<p th:text="${userDetails.username}" class="card-text"></p>-->
 
-<p>Click <a th:href="@{/profile}">here</a> profile.</p>
-<p>Click <a th:href="@{/login}">here</a> login.</p>
-<p>Click <a th:href="@{/signup}">here</a> signup.</p>
+<!--<p>Click-->
+<!--    <button sec:authorize="isAuthenticated()" type="submit" th:href="@{/logout}">here</button>-->
+<!--    logout.-->
+<!--</p>-->
+<p>Click
+    <a sec:authorize="isAnonymous()" type="submit" th:href="@{/login}">here</a>
+    login.
+</p>
+<p>Click
+    <a th:href="@{/signup}">here</a>
+    signup.
+</p>
 </body>
 </html>
