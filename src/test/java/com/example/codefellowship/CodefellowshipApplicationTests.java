@@ -1,10 +1,10 @@
-package com.codefellowship.restap;
+package com.example.codefellowship;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestapApplicationTests {
+class CodefellowshipApplicationTests {
 
 	@Test
 	void contextLoads() {

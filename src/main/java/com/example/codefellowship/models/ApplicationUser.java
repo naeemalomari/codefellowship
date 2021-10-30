@@ -1,5 +1,4 @@
-package com.codefellowship.restap.model;
-
+package com.example.codefellowship.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,29 +14,41 @@ public class ApplicationUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    private String password;
-    private String firstname;
-    private String lastname;
-    private String dateOfBirth;
-    private String bio;
 
     @Column(unique = true)
     private String username;
 
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String dateOfBirth;
+    private String bio;
 
     @OneToMany(mappedBy = "user")
-    private List<Posts> posts;
-
-    public List<Posts> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Posts> posts) {
-        this.posts = posts;
-    }
+    private List<Post> posts;
 
     @ManyToMany()
     private Set<ApplicationUser> followers;
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Post post) {
+        this.posts.add(post) ;
+    }
+
+    public ApplicationUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public ApplicationUser() {
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 
     public Set<ApplicationUser> getFollowers() {
         return followers;
@@ -47,22 +58,13 @@ public class ApplicationUser implements UserDetails {
         this.followers.add(follower);
     }
 
-    public ApplicationUser() {
-    }
-
-    public ApplicationUser(Long id, String username, String password, String firstname, String lastname, String dateOfBirth, String bio) {
-        this.id = id;
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
-    }
-
-    public ApplicationUser(String username,String password) {
-        this.password = password;
-        this.username = username;
     }
 
     public Long getId() {
@@ -81,20 +83,20 @@ public class ApplicationUser implements UserDetails {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getDateOfBirth() {
@@ -112,6 +114,8 @@ public class ApplicationUser implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

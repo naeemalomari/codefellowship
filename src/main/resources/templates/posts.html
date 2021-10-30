@@ -2,25 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Page1</title>
+    <meta charset="UTF-8">
+    <title>Sign Up Page</title>
 </head>
 <body>
-<form method="POST" th:action="@{/posts}" name="posts">
-  <h3>Add new post here </h3>
-  <div><label for="body"> WRITE YOUR POST  <input id="body" name="body" type="text"></label></div>
-  <div><input type="submit" value="Submit"/></div>
-
+<form method="POST" th:action="@{/posts}">
+    <h3>Add new post</h3>
+    <div><label for="body">body : <input id="body" name="body" type="text"></label></div>
+    <div><input type="submit" value="Submit"/></div>
 </form>
-<!--  <div th:each="post:${posts}" class="posts">-->
-<!--      <div class="card" style="width: 18rem;">-->
-<!--          <div class="card-body">-->
-<!--              <h5 class="card-title">Post</h5>-->
-<!--              <h6 th:text="${post.createdAt}" class="card-subtitle mb-2 text-muted"></h6>-->
-<!--              <p th:text="${post.body}" class="card-text"></p>-->
-<!--          </div>-->
-<!--      </div>-->
-<!--  </div>-->
-
 </body>
 </html>
