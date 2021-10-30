@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -97,6 +98,34 @@ public class HomeController {
         model.addAttribute("user", user);
 
         return "userId";
+    }
+
+    @GetMapping("/home")
+    public String gethome(Model model){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApplicationUser user=applicationUserRepository.findApplicationUserByUsername(userDetails.getUsername());
+        model.addAttribute("userdata", user);
+        return "homepage2";
+    }
+
+    @GetMapping("/search")
+    public String getAllusers(Model model){
+        List<ApplicationUser> users = applicationUserRepository.findAll();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApplicationUser current=applicationUserRepository.findApplicationUserByUsername(userDetails.getUsername());
+        model.addAttribute("actual", current.getUsername());
+        model.addAttribute("users", users);
+        return "search";
+    }
+
+    @GetMapping("/feed")
+    public String viewFeed(Model model){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ApplicationUser user=applicationUserRepository.findApplicationUserByUsername(userDetails.getUsername());
+        Set<ApplicationUser> userFeed=user.getFollowers();
+
+        model.addAttribute("following", userFeed);
+        return "feed";
     }
     @GetMapping("/")
     public String goHome(){

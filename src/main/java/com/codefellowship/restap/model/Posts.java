@@ -27,7 +27,6 @@ public class Posts {
     @JoinColumn(name="user_id")
     private ApplicationUser user;
 
-
     public Posts() {
     }
 
