@@ -1,26 +1,29 @@
-package com.codefellowship.restap.WebSecurityConfig;
+package com.example.codefellowship.repositories;
 
-import com.codefellowship.restap.Repository.ApplicationUserRepository;
-import com.codefellowship.restap.model.ApplicationUser;
+import com.example.codefellowship.models.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    ApplicationUserRepository applicationUserRepository;
+    UserRepository userRepository;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ApplicationUser applicationUser = applicationUserRepository.findApplicationUserByUsername(username);
-    if(applicationUser == null){
-        throw new UsernameNotFoundException(username + "NOT FOUND");
+        ApplicationUser User = userRepository.findApplicationUserByUsername(username);
+
+        if (User == null) {
+            System.out.print("Username not found");
+            throw new UsernameNotFoundException((username + " not found"));
+        }
+
+        return User;
     }
-    return applicationUser;
     }
-}
+

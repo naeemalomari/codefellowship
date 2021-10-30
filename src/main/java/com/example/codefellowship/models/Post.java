@@ -1,4 +1,4 @@
-package com.codefellowship.restap.model;
+package com.example.codefellowship.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
@@ -6,28 +6,30 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 @Entity
-public class Posts {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-
-
     private String body;
 
     @CreationTimestamp
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
-    private LocalDateTime createAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name="user_id")
     private ApplicationUser user;
 
-    public Posts() {
+    public Post() {
+    }
+
+    public Post(String body) {
+        this.body = body;
+        this.createdAt = createdAt;
     }
 
     public String getBody() {
@@ -38,12 +40,12 @@ public class Posts {
         this.body = body;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public ApplicationUser getUser() {
@@ -54,10 +56,6 @@ public class Posts {
         this.user = user;
     }
 
-    public Posts(String body) {
-        this.body = body;
-    }
-
     public Long getId() {
         return id;
     }
@@ -65,4 +63,6 @@ public class Posts {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 }

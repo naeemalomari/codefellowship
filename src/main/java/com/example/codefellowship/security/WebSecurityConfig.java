@@ -1,6 +1,7 @@
-package com.codefellowship.restap.WebSecurityConfig;
+package com.example.codefellowship.security;
 
 
+import com.example.codefellowship.repositories.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration @EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -35,13 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/signup").permitAll()
-//                .antMatchers("/profile").permitAll()
-                .antMatchers("/login").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/home").permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").defaultSuccessUrl("/profile",true)
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .logout()
+                .logoutSuccessUrl("/");
     }
 }

@@ -1,13 +1,13 @@
-package com.codefellowship.restap;
+package com.example.codefellowship;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestapApplication {
+public class CodefellowshipApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestapApplication.class, args);
+		SpringApplication.run(CodefellowshipApplication.class, args);
 	}
 
 }
